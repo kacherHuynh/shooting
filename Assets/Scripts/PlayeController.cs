@@ -20,6 +20,7 @@ public class PlayeController : MonoBehaviour {
 		
 		if ((CrossPlatformInputManager.GetButtonDown ("Shoot")) || Input.GetKeyDown(KeyCode.Space)) {
 			GameObject bulletInstance = GameObject.Instantiate(rocket) as GameObject;
+			bulletInstance.transform.position = shootingPos.position;
 			bulletInstance.GetComponent<Rigidbody2D>().velocity = new Vector2 (bulletSpeed, 0);
 			GameObject.FindGameObjectWithTag ("GameManager").GetComponent<AudioSource> ().PlayOneShot (shootingSound,1);
 		}
@@ -40,6 +41,4 @@ public class PlayeController : MonoBehaviour {
 		rigid.velocity = movement;
 
 	}
-
-
 }

@@ -39,13 +39,15 @@ public class SpawnerController : MonoBehaviour {
 		while (currentSpeed == previousSpeed) {
 			currentSpeed = RandomSpeed ();
 		}
-			
+
 		currentY = Random.Range (minY.position.y, maxY.position.y);
 
-		while (Mathf.Abs (currentY - previousY) <= 3) {
-			currentY = Random.Range (minY.position.y, maxY.position.y);
+		if (previousY != 0) {
+			while (Mathf.Abs (currentY - previousY) <= 2 ) {
+				currentY = Random.Range (minY.position.y, maxY.position.y);
+			}
 		}
-			
+
 		go.GetComponent<EnemyController> ().speed = currentSpeed;
 		go.transform.position = new Vector2 (minY.position.x, currentY);
 		go.GetComponent<EnemyController> ().healPoints = Random.Range (1,4);
